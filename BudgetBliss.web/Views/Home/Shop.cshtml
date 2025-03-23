@@ -1,0 +1,103 @@
+﻿@using System.IO;
+@{
+        // Define a list of products with names and prices
+        var products = new List<(string Name, string Price)>
+{
+        ("Used Laptop", "$250"),
+        ("Shoes", "$20"),
+        ("Christian Bale", "$69.429"),
+        ("27-inch Monitor", "$200"),
+        ("USB-C Hub", "$25"),
+        ("External SSD 1TB", "$120"),
+        ("Bluetooth Speaker", "$40"),
+        ("Smartwatch", "$150"),
+        ("Wireless Charger", "$30"),
+        ("Noise-Cancelling Headphones", "$100"),
+        ("Webcam 1080p", "$70"),
+        ("Ergonomic Chair", "$250"),
+        ("Ergonomic Chair", "$251")
+    };
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Bliss - Shop</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/Style.css")">
+</head>
+<body>
+    <section class="product-list">
+        <h2>Shop Our Products</h2>
+        <div class="product-grid">
+            @for (int i = 1; i <= products.Count; i++)
+            {
+                // Define image paths for all formats
+                string imagePathPng = Url.Content("~/Content/Images/" + i + ".png");
+                string imagePathJpg = Url.Content("~/Content/Images/" + i + ".jpg");
+                string imagePathJpeg = Url.Content("~/Content/Images/" + i + ".jpeg");
+                string imagePathGif = Url.Content("~/Content/Images/" + i + ".gif");
+                string imagePathBmp = Url.Content("~/Content/Images/" + i + ".bmp");
+
+                // Check if the PNG image exists, otherwise fallback to other formats
+                string imagePath = imagePathPng; // Default to .png
+                if (!System.IO.File.Exists(Server.MapPath(imagePathPng)))
+                {
+                    if (System.IO.File.Exists(Server.MapPath(imagePathJpg)))
+                    {
+                        imagePath = imagePathJpg;
+                    }
+                    else if (System.IO.File.Exists(Server.MapPath(imagePathJpeg)))
+                    {
+                        imagePath = imagePathJpeg;
+                    }
+                    else if (System.IO.File.Exists(Server.MapPath(imagePathGif)))
+                    {
+                        imagePath = imagePathGif;
+                    }
+                    else if (System.IO.File.Exists(Server.MapPath(imagePathBmp)))
+                    {
+                        imagePath = imagePathBmp;
+                    }
+                    else
+                    {
+                        imagePath = ""; // No image found, set to empty (could also use a default image)
+                    }
+                }
+
+                // Define product name and price from the list for items 1 to 12
+                string productName = "NULL";
+                string productPrice = "NULL";
+
+                if (i <= products.Count)
+                {
+                    productName = products[i - 1].Name;
+                    productPrice = products[i - 1].Price;
+                }
+                else
+                {
+                    // For products beyond the list, set to "NULL"
+                    productName = "NULL";
+                    productPrice = "NULL";
+                }
+
+                <div class="product">
+                    <div class="product-image" style="background: url('@imagePath') no-repeat center center / cover;">
+                        @if (!string.IsNullOrEmpty(imagePath))
+                        {
+                            <img src="@imagePath" alt="Product @i">
+                        }
+                        else
+                        {
+                            <img src="~/Content/Images/Default.png" alt="Default Product Image" /> <!-- Optional fallback image -->
+                        }
+                    </div>
+                    <p>@productName - @productPrice</p>
+                    <button>Add to Cart</button>
+                </div>
+            }
+        </div>
+    </section>
+</body>
+</html>
