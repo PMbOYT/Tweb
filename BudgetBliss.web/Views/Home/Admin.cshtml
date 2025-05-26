@@ -1,0 +1,161 @@
+﻿@using System.IO;
+@{
+    var myListings = new List<(string Name, string Price)>
+{
+        ("Used Laptop", "$250.00"),
+        ("Shoes", "$20.00"),
+        ("Christian", "$69.429"),
+        ("27-inch Monitor", "$200.00"),
+        ("USB-C Hub", "$25.00"),
+        ("External SSD 1TB", "$120.00"),
+        ("Bluetooth Speaker", "$40.00"),
+        ("Smartwatch", "$150.00"),
+        ("Wireless Charger", "$30.00"),
+        ("Noise-Cancelling Headphones", "$100.00"),
+        ("Webcam 1080p", "$70.00"),
+        ("Ergonomic Chair", "$250.00"),
+        ("Ergonomic Chair", "$251.00"),
+        ("Dan e cool", "$0.00"),
+        ("Avem un text lung pentu a testa cum situl se descurca cu un text lung", "$0.00"),
+        ("Gaming Mouse", "$35.00"),
+        ("Mechanical Keyboard", "$89.99"),
+        ("Standing Desk", "$299.00"),
+        ("4K Monitor", "$350.00"),
+        ("Portable Projector", "$220.00"),
+        ("Wireless Earbuds", "$75.00"),
+        ("Fitness Tracker", "$60.00"),
+        ("Graphic Tablet", "$95.00"),
+        ("Laptop Stand", "$30.00"),
+        ("LED Desk Lamp", "$18.00"),
+        ("Power Bank", "$22.00"),
+        ("Microphone", "$45.00"),
+        ("VR Headset", "$400.00")
+    };
+
+    decimal totalPrice = myListings.Sum(item =>
+        decimal.TryParse(item.Price.Replace("$", ""), out decimal result) ? result : 0
+    );
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Budget Bliss - Admin Panel</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/Style.css")" />
+    <style>
+        .admin-container {
+            padding: 20px;
+            max-width: 1920px;
+            margin: auto;
+        }
+
+        .product-edit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+
+            .product-edit input {
+                margin: 5px 0;
+                padding: 8px;
+                width: 100%;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+            }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
+            max-width: 1920px;
+            gap: 6px;
+            padding: 1rem;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .button-red {
+            background-color: #eb3636;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            margin-top: 5px;
+        }
+
+            .button-red:hover {
+                background-color: #d62d2d;
+            }
+
+        .button-gray {
+            background-color: #999999;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            margin-top: 5px;
+        }
+
+            .button-gray:hover {
+                background-color: #777777;
+            }
+
+        .admin-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax">
+        <div class="content admin-container">
+            <h2 class="left-text red">Admin</h2>
+            <h2 class="admin-title white">Admin – Edit Listings</h2>
+
+            <div class="product-grid">
+                @for (int i = 0; i < myListings.Count; i++)
+                {
+                    var product = myListings[i];
+                    string[] extensions = { ".png", ".jpg", ".jpeg", ".gif", ".bmp" };
+                    string imagePath = "";
+
+                    foreach (var ext in extensions)
+                    {
+                        string testPath = Url.Content($"~/Content/Images/{i+1}{ext}");
+                        if (System.IO.File.Exists(Server.MapPath(testPath)))
+                        {
+                            imagePath = testPath;
+                            break;
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(imagePath))
+                    {
+                        imagePath = Url.Content("~/Content/Images/default.png");
+                    }
+
+                    <div class="product-edit">
+                        <img src="@imagePath" class="product-image" alt="Product @i"/>
+
+                        <input type="text" value="@product.Name" />
+                        <input type="text" value="@product.Price" />
+
+                        <button class="button-gray">Edit</button>
+                        <button class="button-red">Remove</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

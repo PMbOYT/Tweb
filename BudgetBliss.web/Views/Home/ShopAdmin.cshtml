@@ -1,0 +1,146 @@
+﻿@using System.IO;
+@{
+    var products = new List<(string Name, string Price)>
+{
+        ("Used Laptop", "$250.00"),
+        ("Shoes", "$20.00"),
+        ("Christian", "$69.429"),
+        ("27-inch Monitor", "$200.00"),
+        ("USB-C Hub", "$25.00"),
+        ("External SSD 1TB", "$120.00"),
+        ("Bluetooth Speaker", "$40.00"),
+        ("Smartwatch", "$150.00"),
+        ("Wireless Charger", "$30.00"),
+        ("Noise-Cancelling Headphones", "$100.00"),
+        ("Webcam 1080p", "$70.00"),
+        ("Ergonomic Chair", "$250.00"),
+        ("Ergonomic Chair", "$251.00"),
+        ("Dan e cool", "$0.00"),
+        ("Avem un text lung pentu a testa cum situl se descurca cu un text lung", "$0.00")
+    };
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Bliss - Shop</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/Style.css")">
+</head>
+<body>
+    <div class="parallax">
+        <div class="content">
+            <h2 class="left-text red">Admin</h2>
+            <section class="product-list">
+                <div class="white center-text">
+                    <h2 id="slogan" class="typewriter-text">Shop </h2>
+                </div>
+                <div class="product-grid">
+                    @for (int i = 1; i <= products.Count; i++)
+                    {
+                        string[] extensions = { ".png", ".jpg", ".jpeg", ".gif", ".bmp" };
+                        string imagePath = "";
+
+                        foreach (var ext in extensions)
+                        {
+                            string testPath = Url.Content($"~/Content/Images/{i}{ext}");
+                            if (System.IO.File.Exists(Server.MapPath(testPath)))
+                            {
+                                imagePath = testPath;
+                                break;
+                            }
+                        }
+
+                        if (string.IsNullOrEmpty(imagePath))
+                        {
+                            imagePath = Url.Content("~/Content/Images/default.png");
+                        }
+
+                        string productName = products[i - 1].Name;
+                        string productPrice = products[i - 1].Price;
+
+                        <div class="product">
+                            <div class="product-image">
+                                <img src="@imagePath" alt="Product @i">
+                            </div>
+                            <p>@(productName.Length > 30 ? productName.Substring(0, 27) + "..." : productName)</p>
+                            <div>
+                                <h2>@productPrice</h2>
+                            </div>
+                            <button>Add to Cart</button>
+                        </div>
+                    }
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const baseText = "Shop ";
+        const endings = [
+            "smart, save big!",
+            "great deals now!",
+            "happiness today!",
+            "quality for less!",
+            "like never before!",
+            "the best in tech!",
+            "comfort and style!",
+            "with confidence now!",
+            "more, spend less!",
+            "your favorites here!"
+        ];
+
+        const sloganElement = document.getElementById("slogan");
+        let endingIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function setBlinking(enable) {
+            if (enable) {
+                sloganElement.classList.add("blinking-cursor");
+            } else {
+                sloganElement.classList.remove("blinking-cursor");
+            }
+        }
+
+        function type() {
+            const currentEnding = endings[endingIndex];
+            let displayText = baseText + currentEnding.substring(0, charIndex);
+            sloganElement.textContent = displayText;
+
+            if (!isDeleting) {
+                setBlinking(false); // Disable blinking during typing
+
+                if (charIndex < currentEnding.length) {
+                    charIndex++;
+                    setTimeout(type, 70);
+                } else {
+                    // Wait 1 second, then enable blinking and start 3-second delay
+                    setTimeout(() => {
+                        setBlinking(true); // Enable blinking
+                        setTimeout(() => {
+                            isDeleting = true;
+                            setBlinking(false);
+                            type(); // Start deleting
+                        }, 3000); // Wait 3s after the 1s delay
+                    }, 1000); // Initial 1s wait after typing finishes
+                }
+            } else {
+                if (charIndex > 0) {
+                    charIndex--;
+                    setTimeout(type, 40);
+                } else {
+                    isDeleting = false;
+                    endingIndex = (endingIndex + 1) % endings.length;
+                    setTimeout(type, 200); // Short delay before next cycle
+                }
+            }
+        }
+
+        window.onload = () => {
+            setBlinking(false);
+            type();
+        };
+    </script>
+</body>
+</html>
