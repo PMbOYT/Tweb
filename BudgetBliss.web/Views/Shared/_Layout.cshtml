@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Budget Bliss</title> <!-- Titlul la site de sus -->
+    <link rel="stylesheet" href="@Href("~/Content/Style.css")">
+    <link rel="icon" type="image/x-icon" href="~/Content/Images/bb-logo.svg"> <!-- Favicon / Site icon (logo-ul din tab sus) -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="navbar-left">
+                <img src="@Url.Content("~/Content/Images/bb-logo.svg")" alt="Budget Bliss Logo" class="logo">
+                <ul>
+                    <li style="list-style: none;">
+                        @Html.ActionLink("Budget Bliss", "Index", "Home", null, new { @style = "text-decoration: none;" })
+                    </li>
+                </ul>
+            </div>
+
+            <div class="navbar-center">
+                <ul>
+                    <li>@Html.ActionLink("Home", "Index")</li>
+                    <li>@Html.ActionLink("Shop", "Shop")</li>
+                    <li>@Html.ActionLink("Contact", "Contact")</li>
+                </ul>
+            </div>
+
+            <div class="navbar-right">
+
+                <a href="@Url.Action("MyListings", "Home")" style="text-decoration: none; display: flex; align-items: center; gap: 2px;">
+                    <img src="@Url.Content("~/Content/Images/store-logo.svg")" alt="Store logo" class="profile-logo" />
+                </a>
+
+                <a href="@Url.Action("MyCart", "Home")" style="text-decoration: none; display: flex; align-items: center; gap: 2px;">
+                    <img src="@Url.Content("~/Content/Images/cart-logo.svg")" alt="Cart logo" class="profile-logo" />
+                </a>
+
+                <a href="@Url.Action("Profile", "Home")" style="text-decoration: none; display: flex; align-items: center; gap: 2px;">
+                    <img src="@Url.Content("~/Content/Images/profile-logo.svg")" alt="Profile logo" class="profile-logo" />
+                </a>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="container body-content">
+        @RenderBody()
+        <footer>
+            <div class="footer-container">
+    <div class="footer-container center-text">
+        <div class="footer-column white">
+    <h2>Support</h2>
+    <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Order Tracking</a></li>
+        <li><a href="#">Returns</a></li>
+    </ul>
+</div>
+            <div class="footer-column white">
+                <h2>About</h2>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Affiliate Program</a></li>
+                </ul>
+            </div>
+            <div class="footer-column white">
+                <h2>Follow Us</h2>
+                <div class="social-icons">
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">X</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+            <p class="footer-bottom center-text white">&copy; 2025 Budget Bliss. All rights reserved.</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

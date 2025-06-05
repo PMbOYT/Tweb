@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null; // Remove layout if you don't want header/footer
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title class="center-text">Login</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/Style.css")" />
+    <style>
+        .form-container {
+            width: 600px;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #f5f5f5;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+            .form-container input, .form-container button {
+                width: 100%;
+                margin: 10px 0;
+                padding: 10px;
+            }
+
+        .link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #2E8B57;
+        }
+
+        .toggle-link {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+            .toggle-link a {
+                color: #3CB371;
+                text-decoration: none;
+                font-size: 14px;
+            }
+
+                .toggle-link a:hover {
+                    text-decoration: underline;
+                }
+
+        .password-container {
+            position: relative;
+        }
+
+            .password-container input {
+                width: 100%;
+                padding-right: 40px; /* Space for emoji */
+            }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background-color: #ddd;
+            padding: 1px 3px;
+            border-radius: 4px;
+            font-size: 18px;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="center-text">Login</h2>
+        <form method="post" action="/Home/Index">
+            <input type="text" name="username" placeholder="Username" required />
+            <div class="password-container">
+                <input type="password" name="password" id="password" placeholder="Password" required />
+                <div class="toggle-password" onclick="togglePassword()" id="toggleEmoji">🫣</div>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="toggle-link">
+            <span>Don't have an account? <a href="~/Home/Register">Register</a></span>
+        </div>
+    </div>
+
+    <script>
+        let isPasswordVisible = false;
+
+        function togglePassword() {
+            const passwordInput = document.getElementById("password");
+            const toggleEmoji = document.getElementById("toggleEmoji");
+
+            isPasswordVisible = !isPasswordVisible;
+
+            if (isPasswordVisible) {
+                passwordInput.type = "text";
+                toggleEmoji.textContent = "👁️";
+            } else {
+                passwordInput.type = "password";
+                toggleEmoji.textContent = "🫣";
+            }
+        }
+    </script>
+</body>
+</html>

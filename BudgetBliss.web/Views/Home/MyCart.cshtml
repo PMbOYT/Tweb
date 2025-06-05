@@ -1,0 +1,83 @@
+﻿@{
+    var myListings = new List<(string Name, string Price)>
+{
+        ("Vintage Camera", "$99.00"),
+        ("DIY Tool Set", "$45.00"),
+        ("Mountain Bike", "$300.00"),
+    };
+
+    // Convert prices to numeric values and calculate total
+    decimal totalPrice = myListings.Sum(item =>
+        decimal.Parse(item.Price.Replace("$", ""))
+    );
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Budget Bliss - My Listings</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/Style.css")">
+    <style>
+        .buy-now-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+            padding-right: 20px;
+        }
+
+        .buy-now-button {
+            padding: 14px 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3CB371; /* Original green */
+            color: white;
+            cursor: pointer;
+            white-space: nowrap;
+            max-width: 240px; /* 👈 Set maximum width */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+            .buy-now-button:hover {
+                background-color: #2E8B57;
+            }
+    </style>
+
+
+</head>
+<body>
+    <div class="parallax">
+        <div class="content">
+            <section class="product-list">
+                <div class="white center-text">
+                    <h2>My cart</h2>
+                </div>
+                <div class="product-grid">
+                    @for (int i = 0; i < myListings.Count; i++)
+                    {
+                        var product = myListings[i];
+                        <div class="product">
+                            <div class="product-image">
+                                <img src="@Url.Content($"~/Content/Images/listing{i+1}.jpg")" alt="Product Image">
+                            </div>
+                            <p>@product.Name</p>
+                            <div>
+                                <h2>@product.Price</h2>
+                            </div>
+                            <button class="button-red">Remove</button>
+                        </div>
+                    }
+                </div>
+
+                <!-- Buy Now button in-flow -->
+                <div class="buy-now-container">
+                    <button class="buy-now-button">
+                        Buy Now – $@totalPrice
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

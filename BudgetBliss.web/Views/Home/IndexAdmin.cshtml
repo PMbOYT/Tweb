@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Bliss - Home</title>
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/Content/Images/bb-logo.svg")">
+</head>
+<body>
+    <div class="parallax">
+        <div class="content">
+            <h2 class="left-text red">Admin</h2>
+            <main class="main-content">
+                <section class="product-list">
+                    <div class="white center-text">
+                        <h2>Shop Our Products</h2>
+                    </div>
+                    <div class="product-grid">
+                        @for (int i = 1; i <= 10; i++)
+                        {
+                            <div class="product">
+                                <img src="https://via.placeholder.com/150" alt="Product @i">
+                                <p>Product @i - $@(i * 10)</p>
+                                <button>Add to Cart</button>
+                            </div>
+                        }
+                    </div>
+                </section>
+            </main>
+        </div>
+     </div>
+</body>
+</html>

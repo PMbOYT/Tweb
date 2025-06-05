@@ -1,0 +1,45 @@
+﻿@{
+    var myListings = new List<(string Name, string Price)>
+{
+        ("Vintage Camera", "$99.00"),
+        ("DIY Tool Set", "$45.00"),
+        ("Mountain Bike", "$300.00"),
+    };
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Budget Bliss - My Listings</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/Style.css")">
+</head>
+<body>
+    <div class="parallax">
+        <div class="content">
+            <section class="product-list">
+                <div class="white center-text">
+                    <h2>My Listings</h2>
+                </div>
+                <div class="product-grid">
+                    @for (int i = 0; i < myListings.Count; i++)
+                    {
+                        var product = myListings[i];
+                        <div class="product">
+                            <div class="product-image">
+                                <img src="@Url.Content($"~/Content/Images/listing{i + 1}.jpg")" alt="Product Image">
+                            </div>
+                            <p>@product.Name</p>
+                            <div>
+                                <h2>@product.Price</h2>
+                            </div>
+                            <a href="@Url.Action("EditProduct", "Home", new { id = i })">
+                                <button>Edit</button>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

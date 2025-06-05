@@ -1,0 +1,549 @@
+/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+body {
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+    width: 100vw;
+    background-image: url('../Content/Images/background-site.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.white {
+    color: white;
+}
+
+.green {
+    color: #41CE67;
+}
+
+.red {
+    color: #eb3636;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.parallax {
+    background-image: url('../Content/Images/background-site.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 50px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center; /* horizontally center buttons */
+    align-items: center; /* vertically center if you want */
+    gap: 15px; /* spacing between buttons */
+    margin: 20px auto; /* center container and add spacing */
+    width: fit-content; /* container only as wide as needed */
+}
+
+.button-red {
+    background-color: #eb3636;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .button-red:hover {
+        background-color: #d62d2d;
+    }
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600; /* Ensuring boldness */
+}
+
+/* Header */
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.logo {
+    width: 26px;
+    height: auto;
+    margin-right: 15px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black */
+    backdrop-filter: blur(10px); /* background blur */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    padding: 15px 20px;
+    height: 60px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 50px;
+}
+
+    .navbar-center ul {
+        display: flex;
+        gap: 50px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    flex-shrink: 0; /* Prevents it from shrinking */
+}
+
+.navbar-buttons {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    flex-grow: 1; /* Allows the nav to grow and center the links */
+    display: flex;
+    justify-content: center; /* Center the links */
+    transform: translateX(-100px); /* Moves the nav 20px to the right */
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+    .navbar ul li {
+        padding: 0 10px;
+    }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+            .navbar ul li a:hover {
+                text-decoration: underline;
+            }
+
+/* Main Content */
+.main-content {
+    padding: 30px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.left-text {
+    text-align: left;
+}
+
+/* Shop Page */
+.product-list {
+    text-align: center;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
+    max-width: 1920px;
+    gap: 6px;
+    padding: 1rem;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+    .product-grid:has(.product:only-child) .product {
+        width: 80%;
+        max-width: 600px; /* Optional: avoid growing too wide */
+    }
+
+.product-image {
+    width: 240px;
+    height: 240px;
+    background-color: #41CE67;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 8px;
+    margin: 0px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    max-width: 1200px;
+    gap: 1rem;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Product Card */
+.product {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 260px;
+}
+
+.product-image {
+    width: 240px;
+    height: 240px;
+    background-color: #41CE67;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    margin: 0 auto 10px;
+    overflow: hidden;
+}
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-image.large {
+        width: 300px;
+        height: 200px;
+        font-size: 9px;
+    }
+
+.product p {
+    margin: 8px 0px 0px 0px;
+    font-size: 14px;
+    }
+
+/* Media Query for Smaller Screens */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center;
+        height: auto;
+    }
+
+    .product {
+        width: 100%;
+    }
+}
+
+/* Buttons */
+button {
+    background-color: #41CE67;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    button:hover {
+        background-color: #35a857;
+    }
+
+/* Contact Page */
+.contact-section {
+    padding: 40px;
+    resize: none;
+}
+
+.typewriter-text {
+    font-size: 2em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid white;
+    display: inline-block;
+}
+
+/* Blinking animation for the cursor */
+.blinking-cursor {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: white;
+    }
+}
+
+.profile-section {
+    padding: 30px;
+    resize: none;
+    text-align: center;
+    padding: 40px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;  /* Optional: set a max if needed */
+    width: 50%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+    form label {
+        font-size: 18px;
+        display: block;
+        margin-top: 10px;
+    }
+
+    form input,
+    form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    form textarea {
+        height: 100px;
+        resize: none;
+    }
+
+    form button {
+        margin-top: 15px;
+    }
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.9); /* semi-transparent black */
+    backdrop-filter: blur(10px); /* background blur */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-column h3 {
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+    .footer-column ul li a {
+        text-decoration: none;
+        color: white;
+        transition: 0.3s;
+    }
+
+        .footer-column ul li a:hover {
+            text-decoration: underline;
+            color: aqua;
+            transition: 0.1s;
+        }
+
+.social-icons a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .navbar-left,
+    .navbar-right {
+        justify-content: center;
+    }
+
+    .navbar-center {
+        position: static; /* remove absolute centering */
+        transform: none;
+        margin-top: 10px;
+    }
+
+        .navbar-center ul {
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+}
+
+    .navbar-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+    }
+
+        .navbar-buttons ul,
+        .navbar ul {
+            flex-direction: row;
+            gap: 40px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+            .navbar ul li {
+                display: block;
+                width: 100%;
+            }
+
+.profile-logo {
+    height: auto;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+    textarea {
+        resize: none;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+.char-count {
+    text-align: right;
+    font-size: 14px;
+    margin-top: 4px;
+    color: #555;
+}
+
+.contact-section {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px); /* background blur */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+    label {
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    input, textarea {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        outline: none;
+        resize: none;
+    }
+
+        input:focus, textarea:focus {
+            border-color: #007BFF;
+        }
+        
+/* Media Query for Extreme Zoom (500%) */
+@media (max-width: 600px) {
+    .navbar-left {
+        align-items: center;
+    }
+
+    .navbar-buttons {
+        flex-grow: 1; /* Allow the navbar buttons to grow and fill available space */
+        justify-content: space-evenly;
+        transform: translateX(100px); /* Moves the nav 20px to the right */
+    }
+
+    .navbar ul {
+        flex-direction: row;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+        .navbar ul li {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+}

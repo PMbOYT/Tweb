@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Edit Product";
+    var id = ViewBag.ProductId ?? 0;
+}
+
+<h2>Edit Product</h2>
+
+<form action="@Url.Action("SaveProduct", "Home")" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="@id" />
+
+    <label>Name:</label><br />
+    <input type="text" name="Name" required /><br /><br />
+
+    <label>Price:</label><br />
+    <input type="text" name="Price" required /><br /><br />
+
+    <label>Image:</label><br />
+    <input type="file" name="imageUpload" /><br /><br />
+
+    <button type="submit">Save</button>
+    <a href="@Url.Action("MyListings", "Home")"><button type="button">Cancel</button></a>
+</form>
